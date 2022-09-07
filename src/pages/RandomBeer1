@@ -1,0 +1,31 @@
+
+import { useState, useEffect } from "react"
+import BackButton from "../components/BackButton"
+import Nav from "../components/Nav"
+
+const RandomBeer = () =>{
+
+    const [beerRandom, setBeerRandom] = useState({})
+
+    useEffect(() =>{
+        fetch(`https://ih-beers-api2.herokuapp.com/beers/random`)
+            .then(res => res.json())
+            .then(randomBeer => setBeerRandom(randomBeer))
+    },[])
+    
+    return(
+
+        <section>
+
+        <p>Random BEER Details</p>
+
+        <img src={beerRandom.image_url} alt="" />
+
+        <BackButton />
+
+        <Nav />
+        </section>
+    )
+
+}
+export default RandomBeer
